@@ -12,6 +12,7 @@ public class TodoService {
 	private static List<Todo> todos = new ArrayList<>();
 	
 	private static int todosCount = 0;
+
 	
 	static {
 		todos.add(new Todo(++todosCount, "Neethu","Get AWS Certified",
@@ -26,6 +27,7 @@ public class TodoService {
 				LocalDate.now().plusYears(12), false ));
 		todos.add(new Todo(++todosCount, "Cristal","Learn ABC",
 				LocalDate.now().plusYears(1), false ));
+
 	}
 	
 	public List<Todo> findByUsername(String username){
