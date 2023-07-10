@@ -7,7 +7,6 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
-//import org.springframework.security.web.servlet.request.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -50,14 +49,10 @@ public class JwtSecurityConfig {
         // https://github.com/spring-projects/spring-security/issues/12310
         return httpSecurity
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(PathRequest.to("/authenticate")).permitAll()
-//                        .requestMatchers(PathRequest.toH2Console()).permitAll() // h2-console is a servlet and NOT recommended for a production
-//                        .requestMatchers(HttpMethod.OPTIONS,"/**")
                         .antMatchers("/authenticate").permitAll()
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
+//                        .requestMatchers(PathRequest.toH2Console()).permitAll() // h2-console is a servlet and NOT recommended for a production
+                        .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.
                         sessionCreationPolicy(SessionCreationPolicy.STATELESS))
